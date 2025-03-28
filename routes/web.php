@@ -19,9 +19,9 @@ use Illuminate\Support\Facades\Route;
 Route::group(['middleware' => 'auth'], function () {
 
     Route::get('/',[MainController::class,'main'])->name('main');
-
     Route::get('/dashboard', [\App\Http\Controllers\MainController::class,'dashboard'])->name('dashboard');
-
+    Route::get('applications/{application}/answer', [\App\Http\Controllers\AnswerController::class, 'create'])->name('answers.create');
+    Route::post('applications/{application}/answer', [\App\Http\Controllers\AnswerController::class, 'store'])->name('answers.store');
     Route::resource('applications', ApplicationController::class);
 });
 
